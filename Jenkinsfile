@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building Docker image...'
                 sh 'docker build -t myapp .'
             }
         }
@@ -12,17 +11,19 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'pip install -r requirements.txt'
-                sh 'pytest'
+                sh 'python3 -m pip install -r requirements.txt'
+                sh 'python3 -m unittest discover'
             }
         }
 
         stage('Deploy') {
+            when {
+                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+            }
             steps {
-                echo 'Deploying the app...'
-                sh 'docker run -d -p 5000:5000 myapp'
+                echo 'Deploying application...'
+                // Your deploy steps here
             }
         }
     }
 }
-
