@@ -1,4 +1,4 @@
-# 🚀 DevOps CI/CD Pipeline – Task 2 (Elevate Labs Internship)
+# 🚀 DevOps CI/CD Pipeline – Task 2 
 
 Welcome! This project demonstrates a complete Continuous Integration and Continuous Deployment (CI/CD) pipeline using **Jenkins**, **Docker**, and **Python Flask**.  
 It was created as part of **Task 2** for my **DevOps internship at Elevate Labs**.
