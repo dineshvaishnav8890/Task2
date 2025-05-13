@@ -11,13 +11,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Running tests in virtual environment...'
+                echo 'Running tests inside Python Docker container...'
                 sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
-                    pytest
+                    docker run --rm -v "$PWD":/app -w /app python:3.9-slim bash -c "
+                        pip install --upgrade pip &&
+                        pip install -r requirements.txt &&
+                        pytest
+                    "
                 '''
             }
         }
